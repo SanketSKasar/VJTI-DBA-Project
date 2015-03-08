@@ -1,3 +1,3 @@
 # VJTI-DBA-Project
 
-IT Infrastructure and Resource Management
+IT Infrastructure Resource Management and Maintanence for VJTI
