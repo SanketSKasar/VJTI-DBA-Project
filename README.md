@@ -3,7 +3,7 @@
 IT Infrastructure Resource Management and Maintanence for VJTI
 
 Project Details :
-Presentation
-Problem Statement
-Logic Schema
+Presentation,
+Problem Statement,
+Logic Schema,
 ER Model
