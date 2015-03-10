@@ -1,4 +1,6 @@
+DROP DATABASE IF EXISTS IT_INFRA_MANAGEMENT;
 create database IT_INFRA_MANAGEMENT ;
+USE DATABASE IT_INFRA_MANAGEMENT;
 
 create table COMPONENT
 (
@@ -31,7 +33,7 @@ create table SUPPLIER
 create table COMPLAINTS
 (
 	COMPLAINT_ID INT primary key,
-	DATE_OF_COMPLAINT date NOT NULL,
+	DATE_OF_COMPLAINT timestamp NOT NULL,
 	TITLE varchar(50) NOT NULL,
 	STATUS tinyint NOT NULL,
 	TYPE tinyint NOT NULL,
@@ -39,7 +41,7 @@ create table COMPLAINTS
 	PRIORITY tinyint,
 	DATE_OF_APPROVAL date,
 	COMPLAINER_ID varchar(30) NOT NULL
-	
+	COMPONENT_ID varchar(30)
 );
 
 create table PC 
@@ -54,33 +56,48 @@ create table LAB
 (
     LAB_ID int primary key,
     NO_OF_PC int NOT NULL,
-    LAB_ADMIN_ID int NOT NULL
+    LAB_ADMIN_ID int NOT NULL,
+    LAB_NAME varchar(30) NOT NULL
 );
 
 create table LAB_ADMIN 
 (
     LAB_ADMIN_ID int primary key,
     NAME varchar(50) NOT NULL,
-    LAB_ID int NOT NULL,
     NO_OF_COMPLAINTS_HANDLED INT NOT NULL,
-    LAST_LOGIN date NOT NULL
+    LAST_LOGIN date
     
 );
 
 alter table COMPONENT
-add foreign key (PC_ID) references PC(PC_ID);
+add foreign key (PC_ID) references PC(PC_ID)
+on update cascade
+on delete set null;
 
 alter table COMPONENT
-add foreign key (SUPPLIER_ID) references SUPPLIER(SUPPLIER_ID);
+add foreign key (SUPPLIER_ID) references SUPPLIER(SUPPLIER_ID)
+on update cascade
+on delete set null;
 
 alter table COMPLAINTS
-add foreign key (COMPLAINER_ID) references COMPLAINER(COMPLAINER_ID);
+add foreign key (COMPLAINER_ID) references COMPLAINER(COMPLAINER_ID)
+on update cascade
+on delete set null;
+
+alter table COMPLAINTS
+add foreign key (COMPONENT_ID) references COMPONENT(COMPONENT_ID)
+on update cascade
+on delete set null;
 
 alter table PC
-add foreign key (LAB_ID) references LAB(LAB_ID);
+add foreign key (LAB_ID) references LAB(LAB_ID)
+on update cascade
+on delete set null;
 
 alter table LAB
-add foreign key (LAB_ADMIN_ID) references LAB_ADMIN(LAB_ADMIN_ID);
+add foreign key (LAB_ADMIN_ID) references LAB_ADMIN(LAB_ADMIN_ID)
+on update cascade
+on delete set null;
 
-alter table LAB_ADMIN
-add foreign key (LAB_ID) references LAB(LAB_ID);
+
+

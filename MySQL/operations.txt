@@ -1,0 +1,64 @@
+/* Actions */
+
+/* User lodges a new complaint */
+insert into COMPLAINER (COMPLAINER_ID, NAME, DESIGNATION, DEPARTEMENT, EMAIL_ID) values ( , , , , ); 
+insert into COMPLAINT(TITLE, TYPE, COMPONENT_ID) values ( , , );
+
+/* increment count of a complaint when more than one user lodges same comlpaint */
+update COMPLAINT set COUNT = COUNT+ 1 where COMPLAINT_ID = ;
+
+/* lab admin approves a complaint and assigns it a priority */
+update COMPLAINT set STATUS = 1 and PRIORITY = and DATE_OF_APPROVAL = CURDATE();
+
+/* lab admin rejects a complaint */
+delete from COMPLAINT where COMPLAINT_ID = ;
+
+/* remove resolved complaints after regular interval of time */
+delete from COMPLAINT where STATUS = 2;
+
+/* Management removes a faulty component */
+delete from COMPONENT where COMPONENT_ID = ;
+
+/* Management removes entire pc from service  */
+delete from PC where PC_ID = ;
+
+/* Management purchases new components from supplier */
+insert into PC (PC_ID, Lab_ID, OS) values ( , , );
+insert into COMPONENT (COMPONENT_ID, DATE_OF_PURCHASE, WARRANTY, SUPPLIER_ID, TYPE) values (, CURDATE(), , , );
+
+/* Display */
+
+/* display list of labs */
+select LAB_NAME, LAB_ADMIN_ID, NO_OF_PC 
+from LAB;
+
+/* display list of PCs in a lab */
+select PC_ID, OS 
+from PC
+where LAB_ID = ;
+
+/* display list of components in a PC */
+select TYPE, SUPPLIER_ID, DATE_OF_PURCHASE, WARRANTY, WORKING_STATUS
+from COMPONENT
+where PC_ID = 
+order by DATE_OF_PURCHASE desc;
+
+/* list of unresolved complaints */
+select TITLE, DATE_OF_COMPLAINT, COMPONENT_ID, COUNT, DATE_OF_APPROVAL, PRIORITY, TPYE
+from COMPLAINTS
+where STATUS = 1
+order by PRIORITY desc;
+
+/* list of supplier */
+select NAME, TOTAL_NO_SHIPPED, TOTAL_COMPLAINTS
+from SUPPLIERS;
+
+/* list of lab admins */
+select NAME, NO_OF_COMPLAINTS_HANDLED, LAST_LOGIN
+from LAB_ADMIN;
+
+/* list of unapproved complaints for a particular lab */
+select TITLE, DATE_OF_COMPLAINT, COMPONENT_ID, COUNT, DATE_OF_APPROVAL, PRIORITY, TPYE
+from COMPLAINTS
+where STATUS = 0
+order by PRIORITY desc;
