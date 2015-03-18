@@ -1,0 +1,97 @@
+drop database if exists IT_INFRA_MANAGEMENT;
+create database IT_INFRA_MANAGEMENT ;
+use IT_INFRA_MANAGEMENT;
+
+create table COMPONENT
+(
+    COMPONENT_ID varchar(30) primary key,
+    DATE_OF_PURCHASE date NOT NULL,
+    WORKING_STATUS tinyint NOT NULL,
+    SUPPLIER_ID varchar(30) NOT NULL,
+    WARRANTY INT NOT NULL,
+    TYPE INT NOT NULL,
+    PC_ID varchar(30)
+);   
+
+create table COMPLAINER
+(
+	COMPLAINER_ID varchar(30) primary key,
+	NAME varchar(50) NOT NULL,
+	DEPARTMENT varchar(50) NOT NULL,
+	DESIGNATION varchar(50) NOT NULL,
+	EMAIL_ID varchar(50)
+);
+
+create table SUPPLIER
+(
+	SUPPLIER_ID varchar(30) primary key,
+	NAME varchar(50) NOT NULL,
+	TOTAL_NO_SHIPPED int NOT NULL,
+	TOTAL_COMPLAINTS int NOT NULL
+);
+
+create table COMPLAINTS
+(
+	COMPLAINT_ID INT primary key,
+	DATE_OF_COMPLAINT timestamp NOT NULL,
+	TITLE varchar(50) NOT NULL,
+	STATUS tinyint NOT NULL,
+	TYPE tinyint NOT NULL,
+	COUNT int NOT NULL,
+	PRIORITY tinyint,
+	DATE_OF_APPROVAL date,
+	COMPLAINER_ID varchar(30) NOT NULL,
+	COMPONENT_ID varchar(30)
+);
+
+create table PC 
+(
+    PC_ID varchar(30) primary key,
+    LAB_ID INT NOT NULL,
+    OS varchar(20) NOT NULL
+   
+);
+
+create table LAB 
+(
+    LAB_ID int primary key,
+    NO_OF_PC int NOT NULL,
+    LAB_ADMIN_ID int NOT NULL,
+    LAB_NAME varchar(30) NOT NULL
+);
+
+create table LAB_ADMIN 
+(
+    LAB_ADMIN_ID int primary key,
+    NAME varchar(50) NOT NULL,
+    NO_OF_COMPLAINTS_HANDLED INT NOT NULL,
+    LAST_LOGIN date
+    
+);
+
+alter table COMPONENT
+add foreign key (PC_ID) references PC(PC_ID)
+on update cascade;
+
+alter table COMPONENT
+add foreign key (SUPPLIER_ID) references SUPPLIER(SUPPLIER_ID)
+on update cascade;
+
+alter table COMPLAINTS
+add foreign key (COMPLAINER_ID) references COMPLAINER(COMPLAINER_ID)
+on update cascade;
+
+alter table COMPLAINTS
+add foreign key (COMPONENT_ID) references COMPONENT(COMPONENT_ID)
+on update cascade;
+
+alter table PC
+add foreign key (LAB_ID) references LAB(LAB_ID)
+on update cascade;
+
+alter table LAB
+add foreign key (LAB_ADMIN_ID) references LAB_ADMIN(LAB_ADMIN_ID)
+on update cascade;
+
+
+
