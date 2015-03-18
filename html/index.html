@@ -1,0 +1,132 @@
+<! DOCTYPE HTML>
+<html>
+    <head>
+        <title>
+            IT Lab Management
+        </title>
+        <link rel="stylesheet" type="text/css" href="css1.css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    </head>
+    <body class="bodyNormal" style="text-align:center;">
+        <p class="heading" >VJTI Computer Labs Management System Portal.</p>
+        <br><br><br><br>
+        <p style="color:white; font-size:30px">Select your module : </p>
+        <div class="container">
+        <div class="header" id="h1"> 
+            STUDENT / FACULTY
+        </div>
+        <div class="content" id="c1">
+            <form action="studentPage.php">
+               <table style="margin:5px auto; font-size:25px">
+                    <tr>
+                    <td> Name : </td>
+                    <td><input type="text" name="uname"/></td>
+                    </tr>
+                    <tr>
+                    <td> ID No. : </td>
+                    <td><input type="text" name="s_id"/></td>
+                    </tr>
+                </table>
+                <input type="submit" value="Proceed" style="font-size:25px; background-color:#99ccff;  border-color:#33ccff; border-style:solid;"/>
+                
+            </form>
+        </div>
+        </div>
+        
+        <div class="container">
+        <div class="header" id="h2"> 
+            LAB ADMIN
+        </div>
+        <div class="content" id="c2">
+            <form action="labAdminPage.php">
+               <table style="margin:5px auto; font-size:25px">
+                    <tr>
+                    <td> Admin ID : </td>
+                    <td><input type="text" name="uname"/></td>
+                    </tr>
+                    <tr>
+                    <td> Lab ID : </td>
+                    <td><input type="text" name="s_id"/></td>
+                    </tr>
+                </table>
+                <input type="submit" value="Proceed" style="font-size:25px; background-color:#99ccff;  border-color:#33ccff; border-style:solid;"/>
+                
+            </form>
+        </div>
+        </div>
+        
+        <div class="container">
+        <div class="header" id="h3"> 
+            MANAGEMENT
+        </div>
+        <div class="content" id="c3">
+            <form action="managementPage.php">
+               <table style="margin:5px auto; font-size:25px">
+                    <tr>
+                    <td> Username : </td>
+                    <td><input type="text" name="uname"/></td>
+                    </tr>
+                    <tr>
+                    <td> Password : </td>
+                    <td><input type="text" name="s_id"/></td>
+                    </tr>
+                </table>
+                <input type="submit" value="Proceed" style="font-size:25px; background-color:#99ccff;  border-color:#33ccff; border-style:solid;"/>
+                
+            </form>
+        </div>
+        </div>
+        
+        
+      
+<script>
+    $(".header").click(function () {
+
+    $header = $(this);
+    //getting the next element
+    $content = $header.next();
+    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+    $content.slideToggle(500, function () {
+        //execute this after slideToggle is done
+        //change text of header based on visibility of content div
+       // $header.text(function () {
+            //change text based on condition
+        //    return $content.is(":visible") ? "Collapse" : "Expand";
+        //});
+    });
+
+});  
+
+        </script>
+        
+        
+ <!--       <form action="moduleSelection.php" method="POST">
+            <p style="font-size:30px;">Please select yout module : </p>
+       
+        <table  style="margin: 10px auto; font-size:20px" >
+           <tr>
+               <td>
+                    <input type="radio" name="module" value="student">
+                   
+                </td>
+                <td> Student </td>
+            </tr>
+            <tr>
+            <td>
+            <input type="radio" name="module" value="labAdmin"/>
+                </td>
+            <td> Lab Admin </td>
+            </tr>
+            <tr>
+            <td>
+        <input type="radio" name="module" value="management"/>
+                </td>
+                <td> Management </td>
+            </tr>
+        </table>
+        <br><br>
+        <input type="submit" value="Proceed" style="font-size:30; background-color:#99ccff;  border-color:#33ccff; border-style:solid;"/>
+     -->
+        
+    </body>
+</html>
